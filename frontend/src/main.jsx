@@ -8,8 +8,3 @@ createRoot(document.getElementById('root')).render(
     <App />
   </StrictMode>,
 )
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 64ae579 (your commit message)
