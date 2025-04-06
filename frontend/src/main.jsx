@@ -9,4 +9,7 @@ createRoot(document.getElementById('root')).render(
   </StrictMode>,
 )
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 64ae579 (your commit message)
