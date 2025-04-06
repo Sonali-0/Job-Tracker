@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
+import Home from "./pages/ome";
 import JobForm from "./pages/JobForm"; 
 import EditJob from './pages/EditJob';
 import { ToastContainer } from 'react-toastify'; 
