@@ -17,7 +17,7 @@ const app = express();
 
 const allowedOrigins = [
   process.env.FRONTEND_URL, 
-  'https://your-production-domain.com' 
+  'https://job-tracker-swart.vercel.app/' 
 ];
 
 app.use(cors({
