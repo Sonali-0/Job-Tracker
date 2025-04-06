@@ -16,16 +16,9 @@ const app = express();
 // Middleware
 
 const allowedOrigins = [
-  "http://localhost:5173", // Local dev
-  "https://your-frontend-domain.vercel.app" // Your production frontend
+  process.env.FRONTEND_URL, 
+  'https://your-production-domain.com' 
 ];
-
-app.use(cors({
-  origin: allowedOrigins,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-}));
 
 app.use(cors({
   origin: allowedOrigins,
