@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import API from '../api';
 import { useNavigate } from 'react-router-dom';
@@ -94,7 +95,7 @@ const Home = () => {
           <span key={status} className={`status-badge ${status.toLowerCase()}`}>
             {status}: {count}
           </span>
-        ))}
+        )
       </div>
 
       <div className="top-bar">
