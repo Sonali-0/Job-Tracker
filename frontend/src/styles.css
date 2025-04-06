@@ -69,8 +69,12 @@ body {
 /* Home Page Heading */
 h1 {
   font-size: 2.5rem;
-  color: #fff;
-  margin-top: 20px;
+  color: #ff5900;
+  display: flex;
+  justify-content: center;  
+  align-items: center;       
+  margin: 0 auto;
+  padding-top: 4px;
 }
 
 /* Container for all job data and form */
@@ -91,25 +95,27 @@ h1 {
   margin-bottom: 20px;
 }
 
+
 .filter-container {
   display: flex;
-  margin-left: 80px;
-  align-items: center;
+  justify-content: center;  
+  align-items: center;       
+  margin: 0 auto;            
 }
+
+
 
 .filter-text {
   margin-right: 10px;
-  color: #333;
-  font-weight: bold;
+  color:black;
+  font-weight: 600;
+  font-size: 1.5rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 0.5px;
 }
 
-select {
-  padding: 8px 10px;
-  margin-left: 10px;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
+
+
 
 .add-job-btn {
   background-color: #007BFF;
@@ -201,13 +207,13 @@ select {
 
 /* Job Form */
 .job-form-container {
-  width: 90%; /* Use percentage width instead of max-width */
-  max-width: 1200px; /* But still limit maximum width */
-  margin: 20px auto; /* Center with automatic margins */
-  padding: 30px; /* Increased padding for better spacing */
-  background-color: rgba(255, 255, 255, 0.9); /* Slightly more opaque */
+  width: 90%; 
+  max-width: 1200px; 
+  margin: 20px auto; 
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.9); 
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
 }
 
 .job-form-container h2 {
@@ -221,8 +227,8 @@ select {
   display: flex;
   flex-direction: column;
   gap: 25px;
-  max-width: 800px; /* Limit form width within container */
-  margin: 0 auto; /* Center the form fields */
+  max-width: 800px;
+  margin: 0 auto; 
 }
 
 /* Form Group Enhancements */
@@ -274,6 +280,45 @@ textarea:focus {
   background-color: #218838;
 }
 
+.status-display {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.status-badge {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.status-badge.applied {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  border: 1px solid #bbdefb;
+}
+
+.status-badge.interview {
+  background-color: #fff8e1;
+  color: #ff8f00;
+  border: 1px solid #ffecb3;
+}
+
+.status-badge.offer {
+  background-color: #e8f5e9;
+  color: #388e3c;
+  border: 1px solid #c8e6c9;
+}
+
+.status-badge.rejected {
+  background-color: #ffebee;
+  color: #d32f2f;
+  border: 1px solid #ffcdd2;
+}
 /* Edit Form Styles */
 .edit-form {
   display: flex;
@@ -391,3 +436,4 @@ textarea:focus {
   font-size: 1.2rem;
   color: #7f8c8d;
 }
+
