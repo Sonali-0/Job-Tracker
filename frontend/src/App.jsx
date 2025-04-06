@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import JobForm from "./pages/JobForm"; 
+import EditJob from './pages/EditJob';
 import { ToastContainer } from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css'; 
 import "./styles.css";
@@ -13,6 +14,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/add" element={<JobForm />} />
+        <Route path="/edit/:id" element={<EditJob />} />
       </Routes>
 
     
