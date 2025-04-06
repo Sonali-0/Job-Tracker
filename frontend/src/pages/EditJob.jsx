@@ -22,12 +22,12 @@ const EditJob = () => {
   useEffect(() => {
     const fetchJob = async () => {
       try {
-        const { data } = await API.put(`/${id}`);
+        const { data } = await API.get(`/job/${id}`); // ✅ Fixed from PUT to GET and added backticks
         setFormData({
           company: data.company,
           role: data.role,
           status: data.status,
-          appliedDate: data.appliedDate.split('T')[0],
+          appliedDate: data.appliedDate?.split('T')[0] || '',
           link: data.link || ''
         });
       } catch (error) {
@@ -48,7 +48,7 @@ const EditJob = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      await API.put(`/${id}`, formData);
+      await API.put(`/job/${id}`, formData); // ✅ Correct PUT with URL and payload
       toast.success('Job updated successfully!');
       navigate('/');
     } catch (error) {
@@ -65,26 +65,11 @@ const EditJob = () => {
       <form onSubmit={handleUpdate} className="job-form">
         {loading ? (
           <>
-            <div className="form-group">
-              <label>Company:</label>
-              <Skeleton height={35} />
-            </div>
-            <div className="form-group">
-              <label>Role:</label>
-              <Skeleton height={35} />
-            </div>
-            <div className="form-group">
-              <label>Status:</label>
-              <Skeleton height={35} />
-            </div>
-            <div className="form-group">
-              <label>Applied Date:</label>
-              <Skeleton height={35} />
-            </div>
-            <div className="form-group">
-              <label>Job Link:</label>
-              <Skeleton height={35} />
-            </div>
+            <div className="form-group"><label>Company:</label><Skeleton height={35} /></div>
+            <div className="form-group"><label>Role:</label><Skeleton height={35} /></div>
+            <div className="form-group"><label>Status:</label><Skeleton height={35} /></div>
+            <div className="form-group"><label>Applied Date:</label><Skeleton height={35} /></div>
+            <div className="form-group"><label>Job Link:</label><Skeleton height={35} /></div>
             <Skeleton width={150} height={40} />
           </>
         ) : (
