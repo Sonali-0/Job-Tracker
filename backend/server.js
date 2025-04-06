@@ -15,13 +15,9 @@ const app = express();
 
 // Middleware
 
-const allowedOrigins = [
-  process.env.FRONTEND_URL, 
-  'https://job-tracker-swart.vercel.app/' 
-];
 
 app.use(cors({
-  origin: allowedOrigins,
+  origin: 'https://job-tracker-swart.vercel.app/',  
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 }));
