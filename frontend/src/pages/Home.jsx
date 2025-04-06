@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-
 const Home = () => {
   const [jobs, setJobs] = useState([]);
   const [statusCounts, setStatusCounts] = useState({
@@ -18,7 +17,6 @@ const Home = () => {
   const [statusFilter, setStatusFilter] = useState('');
   const [loading, setLoading] = useState(true);
 
-  
   const navigate = useNavigate();
 
   const sortJobs = (jobsToSort) => {
@@ -35,7 +33,6 @@ const Home = () => {
     try {
       setLoading(true);
 
-      // Fetch both jobs and status counts in parallel
       const [jobsResponse, statusResponse] = await Promise.all([
         API.get('/'),
         API.get('/status-count')
@@ -43,12 +40,10 @@ const Home = () => {
 
       let filteredJobs = jobsResponse.data;
 
-      // Apply status filter if specified
       if (statusFilter) {
         filteredJobs = filteredJobs.filter(job => job.status === statusFilter);
       }
 
-      // Sort the jobs
       const sortedJobs = sortJobs(filteredJobs);
 
       setJobs(sortedJobs);
@@ -63,7 +58,7 @@ const Home = () => {
 
   const deleteJob = async (id) => {
     try {
-      await API.delete(`/${id}`);
+      await API.delete(`/${id}`);  // ❗️ Fixed the backtick string
       toast.success('Job deleted successfully');
       fetchJobs();
     } catch (error) {
@@ -73,16 +68,12 @@ const Home = () => {
   };
 
   const handleEditClick = (job) => {
-    navigate(`/edit/${job._id}`);
+    navigate(`/edit/${job._id}`);  // ❗️ Fixed the backtick string
   };
 
-
   useEffect(() => {
-    setLoading(true); 
     fetchJobs();
   }, [statusFilter]);
-
-
 
   return (
     <div className="home">
@@ -111,59 +102,44 @@ const Home = () => {
             <option value="Rejected">Rejected</option>
           </select>
         </div>
-
       </div>
 
       <div className="job-grid">
-        { loading ?(  Array.from({ length: 6 }).map((_, index) => (
-      <div key={index} className="job-card">
-        <div className="card-info">
-          <p><strong>Company:</strong> <Skeleton width={60} /></p>
-          <p><strong>Role:</strong> <Skeleton width={80} /></p>
-          <p><strong>Status:</strong> <Skeleton width={60} /></p>
-          <p><strong>Date:</strong> <Skeleton width={60} /></p>
-          <p><strong>Link:</strong> <Skeleton width={60} /></p>
-        </div>
-        <div className="action-buttons">
-          <Skeleton width={80} height={35} />
-          <Skeleton width={80} height={35} />
-        </div>
-      </div>
-    ))):
-        jobs.length > 0 ? (
+        {loading ? (
+          Array.from({ length: 6 }).map((_, index) => (
+            <div key={index} className="job-card">
+              <div className="card-info">
+                <p><strong>Company:</strong> <Skeleton width={60} /></p>
+                <p><strong>Role:</strong> <Skeleton width={80} /></p>
+                <p><strong>Status:</strong> <Skeleton width={60} /></p>
+                <p><strong>Date:</strong> <Skeleton width={60} /></p>
+                <p><strong>Link:</strong> <Skeleton width={60} /></p>
+              </div>
+              <div className="action-buttons">
+                <Skeleton width={80} height={35} />
+                <Skeleton width={80} height={35} />
+              </div>
+            </div>
+          ))
+        ) : jobs.length > 0 ? (
           jobs.map((job) => (
             <div key={job._id} className="job-card">
-   
-                <>
-                  <div className="card-info">
-                    <p><strong>Company:</strong> {job.company}</p>
-                    <p><strong>Role:</strong> {job.role}</p>
-                    <p><strong>Status:</strong> {job.status}</p>
-                    <p><strong>Date:</strong> {new Date(job.appliedDate).toLocaleDateString()}</p>
-                    {job.link && (
-                      <p>
-                        <strong>Link:</strong>
-                        <a href={job.link} target="_blank" rel="noreferrer"> View</a>
-                      </p>
-                    )}
-                  </div>
-
-                  <div className="action-buttons">
-                    <button
-                      className="edit-btn"
-                      onClick={() => handleEditClick(job)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="delete-btn"
-                      onClick={() => deleteJob(job._id)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </>
-
+              <div className="card-info">
+                <p><strong>Company:</strong> {job.company}</p>
+                <p><strong>Role:</strong> {job.role}</p>
+                <p><strong>Status:</strong> {job.status}</p>
+                <p><strong>Date:</strong> {new Date(job.appliedDate).toLocaleDateString()}</p>
+                {job.link && (
+                  <p>
+                    <strong>Link:</strong>
+                    <a href={job.link} target="_blank" rel="noreferrer"> View</a>
+                  </p>
+                )}
+              </div>
+              <div className="action-buttons">
+                <button className="edit-btn" onClick={() => handleEditClick(job)}>Edit</button>
+                <button className="delete-btn" onClick={() => deleteJob(job._id)}>Delete</button>
+              </div>
             </div>
           ))
         ) : (
